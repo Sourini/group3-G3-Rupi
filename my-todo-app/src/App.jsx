@@ -1,10 +1,20 @@
 import React from 'react';
 
 export default function App() {
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
     const [inputValue, setInputValue] = React.useState('');
     const [toDoList, setTodoList] = React.useState([
         { id: "1", text: "Sample task - click to complete", isCompleted: false },
     ]);
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if (username && password) {
+            setIsLoggedIn(true);
+        }
+    };
 
     const handleAddTodo = () => {
         if (inputValue.trim()) {
@@ -24,7 +34,7 @@ export default function App() {
                 todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
             )
         );
-    };
+    }
 
     const handleDeleteTodo = (id) => {
         setTodoList(toDoList.filter((todo) => todo.id !== id));
@@ -36,6 +46,70 @@ export default function App() {
         }
     };
 
+    if (!isLoggedIn) {
+      return (
+            <div style={{
+                maxWidth: '400px',
+                margin: '100px auto',
+                padding: '40px',
+                fontFamily: 'Arial, sans-serif',
+                border: '2px solid #333',
+                borderRadius: '8px'
+            }}>
+                <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Login</h1>
+                <form onSubmit={handleLogin}>
+                    <div style={{ marginBottom: '20px' }}>
+                        <label style={{ display: 'block', marginBottom: '5px' }}>Username</label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                border: '1px solid #333',
+                                borderRadius: '5px',
+                                fontSize: '16px',
+                                boxSizing: 'border-box'
+                            }}
+                        />
+                    </div>
+                    <div style={{ marginBottom: '20px' }}>
+                        <label style={{ display: 'block', marginBottom: '5px' }}>Password</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                border: '1px solid #333',
+                                borderRadius: '5px',
+                                fontSize: '16px',
+                                boxSizing: 'border-box'
+                            }}
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        style={{
+                            width: '100%',
+                            padding: '12px',
+                            backgroundColor: '#333',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            fontSize: '16px'
+                        }}
+                    >
+                        Login
+                    </button>
+                </form>
+            </div>
+    );
+}
+
     return (
         <div style={{
             maxWidth: '600px',
@@ -44,6 +118,22 @@ export default function App() {
             fontFamily: 'Arial, sans-serif'
         }}>
             <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>To-Do List</h1>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+                <h1>To-Do List</h1>
+                <button
+                    onClick={() => setIsLoggedIn(false)}
+                    style={{
+                        padding: '8px 16px',
+                        backgroundColor: '#ff4444',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: 'pointer'
+                    }}
+                >
+                    Logout
+                </button>
+            </div>
 
             {/* Input Box */}
             <div style={{ marginBottom: '20px' }}>
@@ -149,4 +239,4 @@ export default function App() {
             </div>
         </div>
     );
-}
+  };
