@@ -122,6 +122,13 @@ export default function App() {
             }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
                     <h1>To-Do List</h1>
+                    <button>
+                        <nav className="navbar">
+                            <div className="links">
+                                <a href="/">Home</a>
+                            </div>
+                        </nav>
+                    </button>
                     <button
                         onClick={() => setIsLoggedIn(false)}
                         style={{
