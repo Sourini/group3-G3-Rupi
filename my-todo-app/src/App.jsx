@@ -129,6 +129,13 @@ export default function App() {
                             </div>
                         </nav>
                     </button>
+                    <button>
+                        <nav className="navbar">
+                            <div className="links">
+                                <a href="/habits">Habits</a>
+                            </div>
+                        </nav>
+                    </button>
                     <button
                         onClick={() => setIsLoggedIn(false)}
                         style={{
