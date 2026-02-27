@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HabitDo from './pages/HabitAndToDo';
 
+import HabitTracker from './pages/Habit';
+
 export default function App() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -49,71 +51,71 @@ export default function App() {
         }
     };
 
-    if (!isLoggedIn) {
-      return (
-            <div style={{
-                maxWidth: '400px',
-                margin: '100px auto',
-                padding: '40px',
-                fontFamily: 'Arial, sans-serif',
-                border: '2px solid #333',
-                borderRadius: '8px'
-            }}>
-                <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Login</h1>
-                <form onSubmit={handleLogin}>
-                    <div style={{ marginBottom: '20px' }}>
-                        <label style={{ display: 'block', marginBottom: '5px' }}>Username</label>
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            style={{
-                                width: '100%',
-                                padding: '10px',
-                                border: '1px solid #333',
-                                borderRadius: '5px',
-                                fontSize: '16px',
-                                boxSizing: 'border-box'
-                            }}
-                        />
-                    </div>
-                    <div style={{ marginBottom: '20px' }}>
-                        <label style={{ display: 'block', marginBottom: '5px' }}>Password</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            style={{
-                                width: '100%',
-                                padding: '10px',
-                                border: '1px solid #333',
-                                borderRadius: '5px',
-                                fontSize: '16px',
-                                boxSizing: 'border-box'
-                            }}
-                        />
-                    </div>
-                    <button
-                        type="submit"
+if (!isLoggedIn) {
+  return (
+        <div style={{
+            maxWidth: '400px',
+            margin: '100px auto',
+            padding: '40px',
+            fontFamily: 'Arial, sans-serif',
+            border: '2px solid #333',
+            borderRadius: '8px'
+        }}>
+            <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Login</h1>
+            <form onSubmit={handleLogin}>
+                <div style={{ marginBottom: '20px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px' }}>Username</label>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         style={{
                             width: '100%',
-                            padding: '12px',
-                            backgroundColor: '#333',
-                            color: 'white',
-                            border: 'none',
+                            padding: '10px',
+                            border: '1px solid #333',
                             borderRadius: '5px',
-                            cursor: 'pointer',
-                            fontSize: '16px'
+                            fontSize: '16px',
+                            boxSizing: 'border-box'
                         }}
-                    >
-                        Login
-                    </button>
-                </form>
-            </div>
-    );
+                    />
+                </div>
+                <div style={{ marginBottom: '20px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px' }}>Password</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{
+                            width: '100%',
+                            padding: '10px',
+                            border: '1px solid #333',
+                            borderRadius: '5px',
+                            fontSize: '16px',
+                            boxSizing: 'border-box'
+                        }}
+                    />
+                </div>
+                <button
+                    type="submit"
+                    style={{
+                        width: '100%',
+                        padding: '12px',
+                        backgroundColor: '#333',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                        fontSize: '16px'
+                    }}
+                >
+                    Login
+                </button>
+            </form>
+        </div>
+  );
 }
 
-        return (
+return (
             <div style={{
                 maxWidth: '600px',
                 margin: '50px auto',
@@ -132,7 +134,7 @@ export default function App() {
                     <button>
                         <nav className="navbar">
                             <div className="links">
-                                <a href="/habits">Habits</a>
+                                <a href="/habit">Habits</a>
                             </div>
                         </nav>
                     </button>
@@ -256,19 +258,10 @@ export default function App() {
                                         borderRadius: '5px'
                                     }}></div>
                                 </div>
-                            </React.Fragment>
-                        ))
-                    )}
-    
-                    <div className="habit-do-container">
-                        <BrowserRouter>
-                            <Navbar />
-                            <Routes>
-                                <Route path="/" element={<HabitDo />} />
-                            </Routes>
-                        </BrowserRouter>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+                                            </React.Fragment>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    }
